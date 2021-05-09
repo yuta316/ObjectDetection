@@ -14,13 +14,10 @@ class LeNet(nn.Module):
         self.fc3 = nn.Linear(84, 10)
     
     def forward(self, x):
-        print(x.shape)
         x = self.pool(F.relu(self.conv1(x)))
-        print(x.shape)
         x = self.conv2(x)
-        print(x.shape)
+        x = self.pool(F.relu(x))
         x = x.view(-1, self.num_flat_features(x))
-        print(x.shape)
         x = self.fc1(x)
         x = F.relu(x)
         x = self.fc2(x)
